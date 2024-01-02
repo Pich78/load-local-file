@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Load a text file</title>
+</head>
+<body>
+  <h1>Load a text file</h1>
+  <p>
+    <input type="file" name="file">
+    <input type="submit" value="Carica">
+  </p>
+
+  <p id="file-content"></p>
+
+  <script>
+    const fileInput = document.querySelector("input[name='file']");
+    const fileContent = document.querySelector("#file-content");
+
+    fileInput.addEventListener("change", function() {
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function() {
+          fileContent.innerHTML = reader.result;
+        };
+
+        reader.readAsText(file);
+      }
+    });
+  </script>
+</body>
+</html>
